@@ -1,5 +1,5 @@
 FROM php:7.1-fpm
-MAINTAINER goozp "laijianyi@hnjhpm.com"
+MAINTAINER ljy "sal597685816@live.cn"
  
 # 设置时区
 ENV TZ=Asia/Shanghai
