@@ -14,4 +14,5 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
   && supervisorctl restart php-fpm && apk del gcc g++ m4 autoconf make readline readline-dev && rm -rf /var/www/html/* \
   && wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.0.5.tgz \
   && tar -xzf mongodb-linux-x86_64-4.0.5.tgz -C /usr/local && mv /usr/local/mongodb-linux-x86_64-4.0.5 /usr/local/mongodb \
-  && export PATH=/usr/local/mongodb/bin:$PATH && source /etc/profile && rm -rf mongodb-linux-x86_64-4.0.5.tgz
+  && export PATH=/usr/local/mongodb/bin:$PATH && source /etc/profile && rm -rf mongodb-linux-x86_64-4.0.5.tgz \
+  && echo "date.timezone=PRC" > /usr/local/etc/php/conf.d/date-timezone.ini
