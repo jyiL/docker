@@ -1,0 +1,13 @@
+FROM swoft/alphp
+
+MAINTAINER ljy "sal597685816@live.cn"
+
+RUN set -ex \
+        # change apk source repo
+        && sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/' /etc/apk/repositories \
+        && apk update \
+        && apk add --no-cache \
+        php7-pgsql \
+        php7-pdo_pgsql \
+        && apk del --purge *-dev \
+        && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/share/php7
