@@ -11,4 +11,6 @@ RUN set -ex \
         php7-pdo_pgsql \
         php7-pcntl \
         && apk del --purge *-dev \
-        && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/share/php7
+        && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/share/php7 \
+        && apk add supervisor
+        
