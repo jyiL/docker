@@ -1,12 +1,12 @@
 FROM hyperf/hyperf:7.3-alpine-cli
 
-# Install composer
-Run curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/composer \
-    && composer self-update --clean-backups \
-    
 # Install composer deps
 ADD . /hyperf-skeleton
-RUN  cd /hyperf-skeleton \
+
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php \
+    && mv composer.phar /usr/local/bin/composer \
+    && composer self-update --clean-backups \
+    && cd /hyperf-skeleton \
     && composer install \
     && composer clearcache
