@@ -18,12 +18,12 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
   && echo "date.timezone=PRC" > /usr/local/etc/php/conf.d/date-timezone.ini && wget https://github.com/tideways/php-xhprof-extension/archive/v5.0.1 -O /tmp/xhprof.tar.gz \
   && cd /tmp \
   && tar -xzvf xhprof.tar.gz \
-  && cd /tmp/php-xhprof-extension-$XHPROF_VERSION \
+  && cd /tmp/php-xhprof-extension-5.0.1 \
   && phpize \
   && ./configure \
   && make \
   && make install \
   && cd - \
   && rm /tmp/xhprof.tar.gz \
-  && rm -rf /tmp/php-xhprof-extension-$XHPROF_VERSION \
+  && rm -rf /tmp/php-xhprof-extension-5.0.1 \
   && echo -e "extension=tideways.so\ntideways.auto_prepend_library=0\ntideways.sample_rate=100" > /usr/local/etc/php/conf.d/tideways.ini
