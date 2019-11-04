@@ -27,4 +27,4 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
   && cd /usr/local && wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.0.5.tgz \
   && tar -xzf mongodb-linux-x86_64-4.0.5.tgz -C /usr/local && mv /usr/local/mongodb-linux-x86_64-4.0.5 /usr/local/mongodb \
   && export PATH=/usr/local/mongodb/bin:$PATH && source /etc/profile && rm -rf mongodb-linux-x86_64-4.0.5.tgz \
-  && echo "date.timezone=PRC" > /usr/local/etc/php/conf.d/date-timezone.ini 
+  && echo "date.timezone=PRC" > /usr/local/etc/php/conf.d/date-timezone.ini && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
