@@ -15,7 +15,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
   && cd /usr/local && wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.0.5.tgz \
   && tar -xzf mongodb-linux-x86_64-4.0.5.tgz -C /usr/local && mv /usr/local/mongodb-linux-x86_64-4.0.5 /usr/local/mongodb \
   && export PATH=/usr/local/mongodb/bin:$PATH && source /etc/profile && rm -rf mongodb-linux-x86_64-4.0.5.tgz \
-  && echo "date.timezone=PRC" > /usr/local/etc/php/conf.d/date-timezone.ini && wget https://github.com/tideways/php-xhprof-extension/archive/v5.0.1 -O /tmp/xhprof.tar.gz \
+  && echo "date.timezone=PRC" > /usr/local/etc/php/conf.d/date-timezone.ini && wget https://github.com/tideways/php-xhprof-extension/archive/v5.0.1.tar.gz -O /tmp/xhprof.tar.gz \
   && cd /tmp \
   && tar -xzvf xhprof.tar.gz \
   && cd /tmp/php-xhprof-extension-5.0.1 \
