@@ -62,4 +62,8 @@ RUN set -ex \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/share/php7 \
     && php -v \
     && php -m \
-    && echo -e "\033[42;37m Build Completed :).\033[0m\n"
+    && echo -e "\033[42;37m Build Completed :).\033[0m\n" \
+    && apk --no-cache --allow-untrusted --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ add gnu-libiconv
+    
+    
+ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
