@@ -47,7 +47,7 @@ RUN set -ex \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n" \
     # 安装composer
-    && wget https://github.com/composer/composer/releases/download/1.8.6/composer.phar \
+    && wget https://github.com/composer/composer/releases/download/2.0.4/composer.phar \
     && chmod u+x composer.phar \
     && mv composer.phar /usr/local/bin/composer \
     # 设置阿里云镜像源
