@@ -59,7 +59,6 @@ RUN set -ex \
     php7-zip \
     php7-zlib \
     php7-xml \
-    php7-yaml \
     php7-xmlreader \
     php7-pcntl \
     php7-opcache \
