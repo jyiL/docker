@@ -44,6 +44,6 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
     apk del ${PHPIZE_DEPS} && \
     docker-php-ext-install redis pgsql pdo pdo_mysql pdo_pgsql bcmath pcntl && \
     # install composer
-    wget -nv -O /usr/local/bin/composer https://github.com/composer/composer/releases/download/2.0.2/composer.phar && \
-    chmod u+x /usr/local/bin/composer && \
+#    wget -nv -O /usr/local/bin/composer https://github.com/composer/composer/releases/download/2.0.2/composer.phar && \
+#    chmod u+x /usr/local/bin/composer && \
       rm -rf /var/cache/apk/*
