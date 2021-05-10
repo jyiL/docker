@@ -18,7 +18,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
     php7-pdo_pgsql php7-gettext \
     php7-bz2 php7-iconv php7-curl php7-ctype php7-fpm \
     php7-pcntl \
-    php7-mbstring php7-session php7-phar curl lua lua-dev libzip curl-dev postgresql-dev \
+    php7-mbstring php7-session php7-phar curl lua lua-dev libzip-dev curl-dev postgresql-dev \
     tzdata && \
     sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php7/php-fpm.conf && \
     sed -i -e "s/listen\s*=\s*127.0.0.1:9000/listen = 9000/g" /etc/php7/php-fpm.d/www.conf && \
