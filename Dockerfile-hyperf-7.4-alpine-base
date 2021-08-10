@@ -5,7 +5,7 @@
 # @contact  group@hyperf.io
 # @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
 
-ARG ALPINE_VERSION=3.9
+ARG ALPINE_VERSION
 
 FROM alpine:$ALPINE_VERSION
 
@@ -14,15 +14,15 @@ LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MI
 ARG ALPINE_VERSION
 
 # trust this project public key to trust the packages.
-ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
+ADD https://alpine-apk-repository.knowyourself.cc/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
 
 ##
 # ---------- building ----------
 ##
 RUN set -ex \
     # change apk source repo
-    && echo "https://dl.bintray.com/php-alpine/v$ALPINE_VERSION/php-7.4" >> /etc/apk/repositories \
-    && echo "@php https://dl.bintray.com/php-alpine/v$ALPINE_VERSION/php-7.4" >> /etc/apk/repositories \
+    && echo "https://alpine-apk-repository.knowyourself.cc/v$ALPINE_VERSION/php-7.4" >> /etc/apk/repositories \
+    && echo "@php https://alpine-apk-repository.knowyourself.cc/v$ALPINE_VERSION/php-7.4" >> /etc/apk/repositories \
     && apk update \
     && apk add --no-cache \
     # Install base packages ('ca-certificates' will install 'nghttp2-libs')
@@ -62,6 +62,12 @@ RUN set -ex \
     php7-xmlreader \
     php7-pcntl \
     php7-opcache \
+    yaml \
+    yaml-dev \
+    php7-yaml \
+    lua \ 
+    lua-dev \
+    php7-lua \
     && ln -sf /usr/bin/php7 /usr/bin/php \
     && apk del --purge *-dev \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/share/php7 \
