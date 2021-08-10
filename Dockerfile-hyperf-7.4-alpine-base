@@ -5,13 +5,13 @@
 # @contact  group@hyperf.io
 # @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
 
-ARG ALPINE_VERSION
+ARG ALPINE_VERSION=3.11
 
 FROM alpine:$ALPINE_VERSION
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
 
-ARG ALPINE_VERSION
+ARG ALPINE_VERSION=3.11
 
 # trust this project public key to trust the packages.
 ADD https://alpine-apk-repository.knowyourself.cc/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
