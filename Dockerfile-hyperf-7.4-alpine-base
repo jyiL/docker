@@ -5,13 +5,13 @@
 # @contact  group@hyperf.io
 # @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
 
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 
 FROM alpine:$ALPINE_VERSION
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
 
-ARG ALPINE_VERSION=3.11
+ARG ALPINE_VERSION=3.12
 
 # trust this project public key to trust the packages.
 ADD https://alpine-apk-repository.knowyourself.cc/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
@@ -65,9 +65,6 @@ RUN set -ex \
     yaml \
     yaml-dev \
     php7-yaml \
-    lua \ 
-    lua-dev \
-    php7-lua \
     && ln -sf /usr/bin/php7 /usr/bin/php \
     && apk del --purge *-dev \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/share/php7 \
