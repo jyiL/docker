@@ -48,6 +48,8 @@ RUN set -ex \
     && echo "opcache.enable_cli = 'On'" >> /etc/php7/conf.d/00_opcache.ini \
     && echo "extension=swoole.so" > /etc/php7/conf.d/50_swoole.ini \
     && echo "swoole.use_shortname = 'Off'" >> /etc/php7/conf.d/50_swoole.ini \
+    # phar
+    && echo "phar.readonly = On" >> /etc/php7/conf.d/55_phar.ini \
     # install composer
     && wget -nv -O /usr/local/bin/composer https://github.com/composer/composer/releases/download/${COMPOSER_VERSION}/composer.phar --no-check-certificate \
     && chmod u+x /usr/local/bin/composer \
