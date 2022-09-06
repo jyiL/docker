@@ -16,9 +16,12 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
     php7-gmp php7-json php7-dom php7-pdo php7-zip \
     php7-zlib php7-mysqli php7-bcmath php7-pdo_mysql php7-pgsql \
     php7-pdo_pgsql php7-gettext \
-    php7-bz2 php7-iconv php7-curl php7-ctype php7-fpm \
+    php7-bz2 php7-iconv php7-curl php7-ctype php7-sockets php7-fpm \
     php7-pcntl \
-    php7-mbstring php7-session php7-phar curl lua lua-dev libzip-dev libpng-dev curl-dev postgresql-dev \
+    php7-mbstring php7-session php7-phar curl lua lua-dev libzip-dev \
+    # gd
+    freetype libpng libjpeg-turbo freetype-dev libpng-dev jpeg-dev libjpeg libjpeg-turbo-dev libwebp libwebp-dev \
+    postgresql-dev \
     tzdata && \
     sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php7/php-fpm.conf && \
     sed -i -e "s/listen\s*=\s*127.0.0.1:9000/listen = 9000/g" /etc/php7/php-fpm.d/www.conf && \
@@ -38,11 +41,15 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
     pecl install lua && \
     docker-php-ext-enable lua && \
     # swoole
-    apk add --no-cache php7-sockets libstdc++ && \
-    pecl install swoole && \
+    apk add --no-cache libstdc++ && \
+    pecl install https://pecl.php.net/get/swoole-4.5.8.tgz && \
     docker-php-ext-enable swoole && \
     apk del ${PHPIZE_DEPS} && \
-    docker-php-ext-install redis pgsql pdo pdo_mysql pdo_pgsql bcmath pcntl zip gd && \
+    # config
+    docker-php-ext-configure gd --with-webp=/usr/include/webp --with-jpeg=/usr/include/jpeg --with-freetype=/usr/include/freetype2/ && \
+    NUMPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
+    docker-php-ext-install -j${NUMPROC} gd && \
+    docker-php-ext-install redis pgsql pdo pdo_mysql pdo_pgsql bcmath pcntl zip && \
     # install composer
     wget -nv -O /usr/local/bin/composer https://github.com/composer/composer/releases/download/2.0.2/composer.phar && \
     chmod u+x /usr/local/bin/composer && \
