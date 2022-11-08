@@ -57,6 +57,10 @@ RUN set -ex \
     && echo "opcache.enable_cli = 'On'" >> /etc/php7/conf.d/00_opcache.ini \
     && echo "extension=swoole.so" > /etc/php7/conf.d/50_swoole.ini \
     && echo "swoole.use_shortname = 'Off'" >> /etc/php7/conf.d/50_swoole.ini \
+    # php extension:lua
+    && apk add lua lua-dev \
+    && pecl install lua \
+    && echo "extension=lua.so" > /etc/php7/conf.d/51_lua.ini \
     # phar
     && echo "phar.readonly = Off" >> /etc/php7/conf.d/55_phar.ini \
     # install composer
