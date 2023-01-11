@@ -57,9 +57,15 @@ RUN set -ex \
         && make -s -j$(nproc) && make install \
     ) \
     && echo "memory_limit=1G" > /etc/php7/conf.d/00_default.ini \
+    && echo "date.timezone=PRC" >> /etc/php7/conf.d/00_default.ini \
+    && echo "upload_max_filesize=50M" >> /etc/php7/conf.d/00_default.ini \
+    && echo "max_file_uploads=200" >> /etc/php7/conf.d/00_default.ini \
+    && echo "post_max_size=100M" >> /etc/php7/conf.d/00_default.ini \
     && echo "opcache.enable_cli = 'On'" >> /etc/php7/conf.d/00_opcache.ini \
     && echo "extension=swoole.so" > /etc/php7/conf.d/50_swoole.ini \
     && echo "swoole.use_shortname = 'Off'" >> /etc/php7/conf.d/50_swoole.ini \
+    # phar
+    && echo "phar.readonly = Off" >> /etc/php7/conf.d/55_phar.ini \
     # install composer
     && wget -nv -O /usr/local/bin/composer https://github.com/composer/composer/releases/download/${COMPOSER_VERSION}/composer.phar --no-check-certificate \
     && chmod u+x /usr/local/bin/composer \
