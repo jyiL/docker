@@ -1,7 +1,7 @@
 FROM php:8.1-cli-alpine
 
 ENV TIMEZONE Asia/Shanghai
-ENV COMPOSER_VERSION 2.7.0
+ENV COMPOSER_VERSION 2.7.1
 
 RUN set -ex \
     && ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
@@ -50,7 +50,7 @@ RUN set -ex \
     && echo "opcache.enable_cli = 'On'" > /usr/local/etc/php/conf.d/00_opcache.ini \
     && echo "phar.readonly = Off" > /usr/local/etc/php/conf.d/00_phar.ini \
     # install composer
-    && wget -nv -O /usr/local/bin/composer https://ghproxy.com/https://github.com/composer/composer/releases/download/${COMPOSER_VERSION}/composer.phar --no-check-certificate \
+    && wget -nv -O /usr/local/bin/composer https://mirror.ghproxy.com/https://github.com/composer/composer/releases/download/${COMPOSER_VERSION}/composer.phar --no-check-certificate \
     && chmod u+x /usr/local/bin/composer \
     # install ext
     && docker-php-ext-install sockets pgsql pdo_mysql pdo_pgsql bcmath pcntl zip exif intl soap xsl \
