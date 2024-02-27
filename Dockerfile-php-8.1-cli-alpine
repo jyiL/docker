@@ -33,6 +33,7 @@ RUN set -ex \
     ${PHPIZE_DEPS} \
     # install gd
     && apk add --no-cache freetype freetype-dev libpng libpng-dev libjpeg-turbo libjpeg-turbo-dev \
+    && apk add openssh-client rsync \
     && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
     # install redis
