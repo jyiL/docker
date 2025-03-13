@@ -18,7 +18,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
     php7-pdo_pgsql php7-gettext \
     php7-bz2 php7-iconv php7-curl php7-ctype php7-fpm \
     php7-pcntl \
-    php7-mbstring php7-session php7-phar zip curl freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev lua lua-dev libzip-dev curl-dev postgresql-dev \
+    php7-mbstring php7-session php7-phar zip curl libmcrypt-dev freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev lua lua-dev libzip-dev curl-dev postgresql-dev \
     tzdata && \
     sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php7/php-fpm.conf && \
     sed -i -e "s/listen\s*=\s*127.0.0.1:9000/listen = 9000/g" /etc/php7/php-fpm.d/www.conf && \
@@ -38,7 +38,8 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
     pecl install lua && \
     docker-php-ext-enable lua && \
     apk del ${PHPIZE_DEPS} && \
-    docker-php-ext-install redis pgsql pdo pdo_mysql pdo_pgsql bcmath pcntl zip gd && \
+    docker-php-ext-install redis pgsql pdo pdo_mysql pdo_pgsql bcmath pcntl zip gd mcrypt && \
+     docker-php-ext-enable mcrypt && \
     docker-php-ext-configure gd \
         --with-gd \
         --with-freetype-dir=/usr/include/ \
